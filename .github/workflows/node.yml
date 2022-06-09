@@ -1,58 +1,58 @@
 name: Node.js
 on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
-  release:
-    types: [created]
+ push:
+  branches:
+   - master
+ pull_request:
+  branches:
+   - master
+ release:
+  types: [created]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - run: npm ci && npm run build
-      - run: npm run lint
+ build:
+  runs-on: ubuntu-latest
+  steps:
+   - uses: actions/checkout@v3
+   - uses: actions/setup-node@v3
+     with:
+      node-version: 16
+   - run: npm ci && npm run build
+   - run: npm run lint
 
-  publish-gpr:
-    if: github.event_name == 'release'
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          registry-url: https://npm.pkg.github.com
-          scope: '@cerusbots'
-      - name: Set registry
-        run: echo "//npm.pkg.github.com:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
-      - run: npm ci && npm run build
-      - run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+ publish-gpr:
+  if: github.event_name == 'release'
+  needs: build
+  runs-on: ubuntu-latest
+  permissions:
+   contents: read
+   packages: write
+  steps:
+   - uses: actions/checkout@v3
+   - uses: actions/setup-node@v3
+     with:
+      node-version: 16
+      registry-url: https://npm.pkg.github.com
+      scope: '@cerusbots'
+   - name: Set registry
+     run: echo "//npm.pkg.github.com:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
+   - run: npm ci && npm run build
+   - run: npm publish --access public
+     env:
+      NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  publish-npm:
-    if: github.event_name == 'release'
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          registry-url: https://registry.npmjs.org
-      - run: npm ci && npm run build
-      - run: npm publish --access public
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+ publish-npm:
+  if: github.event_name == 'release'
+  needs: build
+  runs-on: ubuntu-latest
+  steps:
+   - uses: actions/checkout@v3
+   - uses: actions/setup-node@v3
+     with:
+      node-version: 16
+      registry-url: https://registry.npmjs.org
+   - run: npm ci && npm run build
+   - run: npm publish --access public
+     env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

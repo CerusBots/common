@@ -18,10 +18,14 @@
 		"./http/*": "./dist/http/*"
 	},
 	"scripts": {
+		"prepare": "husky install",
 		"build": "unbuild",
 		"lint:js": "eslint --ext \".ts\" --ignore-path .gitignore .",
 		"lint:prettier": "prettier -c .",
 		"lint": "npm run lint:js && npm run lint:prettier"
+	},
+	"lint-staged": {
+		"*.ts": "eslint"
 	},
 	"sideEffects": false,
 	"repository": {
@@ -35,10 +39,14 @@
 	},
 	"homepage": "https://github.com/CerusBots/common#readme",
 	"devDependencies": {
+		"@commitlint/config-conventional": "^17.0.2",
 		"@types/node": "^17.0.41",
+		"commitlint": "^17.0.2",
 		"eslint": "^8.17.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-config-typescript": "^3.0.0",
+		"husky": "^8.0.1",
+		"lint-staged": "^13.0.1",
 		"prettier": "^2.6.2",
 		"typescript": "^4.7.3",
 		"unbuild": "^0.7.4"
