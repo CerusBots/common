@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"module": "ESNext",
+		"target": "ES5",
+		"lib": ["ES2022"],
+		"sourceMap": true,
+		"types": ["@types/node"],
+		"esModuleInterop": true,
+		"moduleResolution": "node",
+		"declaration": true,
+		"declarationDir": "types"
+	},
+	"include": ["src"],
+	"exclude": ["node_modules"]
+}
