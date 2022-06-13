@@ -17,4 +17,5 @@ export interface APIUser extends APIObject {
 	discordID?: string
 	username?: string
 	discriminator?: string
+	avatarHash?: string
 }

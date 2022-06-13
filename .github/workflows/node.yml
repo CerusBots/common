@@ -21,6 +21,7 @@ jobs:
    - run: npm run lint
 
  publish-gpr:
+  if: github.event_name == 'release'
   needs: build
   runs-on: ubuntu-latest
   permissions:
@@ -37,7 +38,7 @@ jobs:
      run: echo "//npm.pkg.github.com:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
    - run: echo "RELEASE_TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
    - run: npm ci && npm run build
-   - run: npm publish --access public --tag $RELEASE_TAG
+   - run: npm publish --access public
      env:
       NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
