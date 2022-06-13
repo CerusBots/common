@@ -1,18 +1,28 @@
 {
 	"compilerOptions": {
-		"module": "ESNext",
-		"target": "ES5",
-		"lib": ["ES2022"],
-		"sourceMap": true,
-		"types": ["@types/node"],
-		"esModuleInterop": true,
+		"lib": ["es2018"],
+		"module": "commonjs",
+		"target": "es6",
 		"moduleResolution": "node",
-		"declaration": true,
-		"declarationDir": "dist",
 		"allowJs": true,
 		"strict": true,
-		"outDir": "dist"
+		"outDir": "dist",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"esModuleInterop": true,
+		"noImplicitAny": true,
+		"resolveJsonModule": true,
+		"allowSyntheticDefaultImports": true,
+		"sourceMap": true,
+		"baseUrl": ".",
+		"declaration": true,
+		"declarationDir": "dist",
+		"types": ["@types/node"],
+		"paths": {
+			"*": ["node_modules/*"],
+			"~/*": ["./src/*"]
+		}
 	},
-	"include": ["src"],
-	"exclude": ["node_modules"]
+	"exclude": ["node_modules/*"],
+	"include": ["src"]
 }
