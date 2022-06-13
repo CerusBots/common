@@ -13,4 +13,8 @@ export interface APIList<T extends APIObject> {
 export interface APIUser extends APIObject {
 	banned: boolean
 	type: 'default' | 'admin'
+	email?: string
+	discordID?: string
+	username?: string
+	discriminator?: string
 }

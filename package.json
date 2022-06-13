@@ -15,6 +15,7 @@
 			"import": "./dist/index.mjs",
 			"require": "./dist/index.cjs"
 		},
+		"./dist/http/*": "./dist/http/*",
 		"./http/*": "./dist/http/*"
 	},
 	"scripts": {
