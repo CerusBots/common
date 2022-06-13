@@ -2,25 +2,14 @@
 	"name": "@cerusbots/common",
 	"version": "0.1.0",
 	"description": "Common types and functions for Cerus",
-	"type": "module",
-	"main": "./dist/index.mjs",
-	"module": "./dist/index.mjs",
-	"commonjs": "./dist/index.cjs",
+	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"files": [
 		"dist"
 	],
-	"exports": {
-		".": {
-			"import": "./dist/index.mjs",
-			"require": "./dist/index.cjs"
-		},
-		"./dist/http/*": "./dist/http/*",
-		"./http/*": "./dist/http/*"
-	},
 	"scripts": {
 		"prepare": "husky install",
-		"build": "unbuild",
+		"build": "tsc",
 		"lint:js": "eslint --ext \".ts\" --ignore-path .gitignore .",
 		"lint:prettier": "prettier -c .",
 		"lint": "npm run lint:js && npm run lint:prettier"
@@ -49,7 +38,6 @@
 		"husky": "^8.0.1",
 		"lint-staged": "^13.0.1",
 		"prettier": "^2.6.2",
-		"typescript": "^4.7.3",
-		"unbuild": "^0.7.4"
+		"typescript": "^4.7.3"
 	}
 }
