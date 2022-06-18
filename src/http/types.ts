@@ -19,3 +19,15 @@ export interface APIUser extends APIObject {
 	discriminator?: string
 	avatarHash?: string
 }
+
+export interface APIBot extends APIObject {
+	isPremium: boolean
+	isPublic: boolean
+	running: boolean
+	intents: string[]
+	token?: string
+	name?: string
+	description?: string
+	discordID?: string
+	icon?: string
+}
