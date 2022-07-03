@@ -20,6 +20,10 @@ export interface APIUser extends APIObject {
 	avatarHash?: string
 }
 
+export interface APIUserRef extends APIObject {
+	user: APIUser | number
+}
+
 export interface APIBot extends APIObject {
 	isPremium: boolean
 	isPublic: boolean
@@ -30,4 +34,10 @@ export interface APIBot extends APIObject {
 	description?: string
 	discordID?: string
 	icon?: string
+}
+
+export interface APIUserAlert extends APIUserRef {
+	isRead: boolean
+	message: string
+	resourceID?: string
 }
