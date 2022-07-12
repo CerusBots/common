@@ -59,3 +59,21 @@ export interface BotResource {
 		members?: BotTeamMemberSpec[]
 	}
 }
+
+export interface BotRunnerResourceSpec {
+	bots: string[]
+}
+
+export interface BotRunnerResource {
+	apiVersion: string
+	kind: string
+	metadata: k8s.V1ObjectMeta
+	spec?: BotRunnerResourceSpec
+}
+
+export interface BotRunnerListResource {
+	apiVersion: string
+	kind: string
+	metadata: k8s.V1ListMeta
+	items?: Array<BotRunnerResource>
+}
