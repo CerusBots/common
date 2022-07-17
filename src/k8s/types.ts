@@ -53,10 +53,10 @@ export interface BotResource {
 		token: string
 		intents: string[]
 		owner: UserSpec
-		commands?: BotCommandResourceSpec[]
-		messageHooks?: BotMessageHookResourceSpec[]
-		webhooks?: BotWebhookResourceSpec[]
-		members?: BotTeamMemberSpec[]
+		commands?: ({ spec: BotCommandResourceSpec } | { ref: string })[]
+		messageHooks?: ({ spec: BotMessageHookResourceSpec } | { ref: string })[]
+		webhooks?: ({ spec: BotWebhookResourceSpec } | { ref: string })[]
+		members?: ({ spec: BotTeamMemberSpec } | { ref: string })[]
 	}
 }
 
