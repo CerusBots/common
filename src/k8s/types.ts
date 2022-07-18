@@ -1,9 +1,8 @@
 import * as k8s from '@kubernetes/client-node'
 
-export interface BotCode {
-	fromString: { value: string }
-	fromRepo: { path: string; repo: string; ref: string }
-}
+export type BotCode =
+	| { fromString: { value: string } }
+	| { fromRepo: { url: string; ref?: string } }
 
 export interface BotCommandResourceSpec {
 	name: string
