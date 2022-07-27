@@ -1,8 +1,6 @@
 import * as k8s from '@kubernetes/client-node'
 
-export type BotCode =
-	| { fromString: { value: string } }
-	| { fromRepo: { url: string; ref?: string } }
+export type BotCode = { fromString: { value: string } }
 
 export interface BotCommandResourceSpec {
 	name: string
@@ -31,6 +29,7 @@ export interface BotMessageHookResource {
 
 export interface BotWebhookResourceSpec {
 	secret: string
+	id: string
 	code: BotCode
 }
 
@@ -41,7 +40,7 @@ export interface BotWebhookResource {
 	spec?: BotWebhookResourceSpec
 }
 
-export type UserSpec = { discordID: string } | { apiUID: string }
+export type UserSpec = { discordID: string } | { auth0ID: string }
 export type BotTeamMemberSpec = { role: string } & UserSpec
 
 export interface BotResource {
@@ -52,11 +51,23 @@ export interface BotResource {
 		token: string
 		intents: string[]
 		owner: UserSpec
+		repo?: {
+			depth?: number
+			ref?: string
+			url: string
+		}
 		commands?: ({ spec: BotCommandResourceSpec } | { ref: string })[]
 		messageHooks?: ({ spec: BotMessageHookResourceSpec } | { ref: string })[]
 		webhooks?: ({ spec: BotWebhookResourceSpec } | { ref: string })[]
 		members?: ({ spec: BotTeamMemberSpec } | { ref: string })[]
 	}
+}
+
+export interface BotListResource {
+	apiVersion: string
+	kind: string
+	metadata: k8s.V1ListMeta
+	items?: Array<BotResource>
 }
 
 export interface BotRunnerResourceSpec {
